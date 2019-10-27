@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+</head>
+<body>
+<h2>Module 5</h2>
+<h4>Part 1(<i>Javascript demo</i>)</h4>
+
+<i>Enter a string you want to reverse</i>
+<form>
+	<textarea id = "reversetextbox"rows="4" cols="50"></textarea>
+    <input type="button" value="Reverse" onClick="reversedString();">
+</form>
+
+<p id="reversedstringoutput"></p>
+
+<i>Enter an interger you want the first 20 multiples of</i>
+<form>
+    <input id="num" type="number" size="4">
+    <input type="button" value="check" onClick="gen_table()">
+</form>
+<p id="tbl"></p>
+<script type="text/javascript">
+// This function reverses a string
+// reference: https://medium.com/sonyamoisset/reverse-a-string-in-javascript-a18027b8e91c
+function reversedString() {
+	var s = document.getElementById('reversetextbox').value
+	var revstr = s.split("").reverse().join("");
+	document.getElementById("reversedstringoutput").innerHTML = revstr;
+	return(revstr);	
+}
+
+// This function creates a 4 X 5 table with 20 multiple of a number4
+// reference: https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model/Traversing_an_HTML_table_with_JavaScript_and_DOM_Interfaces
+function gen_table() {
+	document.getElementById("tbl").innerHTML = "";
+	var tableOne = document.createElement("table");
+	var tableOneBody = document.createElement("tbody");
+	var n = document.getElementById("num").value;
+	n = Number(n)
+	m = 1;
+	for (var i = 0; i < 5; i++) {
+		var row = document.createElement("tr");
+		for (var j = 0; j < 4; j++) {
+			nn = n * m
+			var cell = document.createElement("td");
+			var cellText = document.createTextNode(nn);
+			cell.appendChild(cellText);
+			row.appendChild(cell);
+			m++;
+		}
+		tableOneBody.appendChild(row);
+	}
+	tableOne.appendChild(tableOneBody);
+	tableOne.setAttribute("border", "1");
+	document.getElementById("tbl").appendChild(tableOne);
+
+}
+</script>
+
+</body>
+</html>
